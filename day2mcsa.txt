@@ -1,0 +1,112 @@
+task1: review/practice
+
+- dns: make a domain: daytwo.com
+- web = c:\webs\cellbiz
+- kim.chu@daytwo.com
+ping 192.168.137.1
+ping 192.168.137.50
+\\192.168.137.50\
+
+Task2: Advance win2022 Networking.
+cellphone:
+ping 8.8.8.8 = ok
+ping www.cisco.com =ok
+
+w22:
+ping 8.8.8.8
+ping www.cisco.com
+
+Task3: Preparing for future IPv6 migration.
+step1: master the ipv6 skills of fingerNAILS.
+
+TASK4: windows 2022 as a physical/cloud Router.
+step1: Install Remote Access Role
+step2: check: directAccess,routing,WAP
+step3: Router vs NAT vs VPN
+
+task4.1: make w22 a Router: Static
+tools->routing
+2. configure routing and remote access
+3. select custom configuration: 
+
+TASK5: W22 SERVER AS A IPV4 ROUTER/IPV6 ROUTER
+1.staticRouting via powershell:
+
+TASK6: ADVANCE DNS CONFIGURATION:
+physical:
+ryan.com: 7files, www.ryan.com=c:\web\datingbiz
+ns = 172.16.m.10
+admin@ryan.com
+
+godeg.com: 7files do that same
+
+gary.com: 7files do that same
+
+earl.com: 7files do that same
+
+7. nmap -v x.x.x.x
+   nmap -Pnv x.x.x.x if with firewall
+   nmap -sP 
+rule1: Secondary DNS
+Every domain must have at least 1 secondary
+dns as backup.
+secondary dns provides a copy of the primary
+zone - cant replace the primary.
+used for dns loadbalancing.
+1 primaryZoneDns: you own the records
+2.secondaryzoneDns: you get a copy of records
+3.forwardingDNS: you get NO record,but a
+                 refferal.
+rootHints = remove, bec. it will be sent to
+            internet.
+admin@godeg.com admin@ryan.com,admin@gary.com
+                admin@earl.com
+subject: LETS TO SPA LATER with sexy,young
+         therapists.
+
+TASK7: W22 DHCP SERVER CONFIGURATION: basic
+give IPaddress to entireCompany,24x7x365.
+Layer3 should be the dhcp server=
+Dhcpserver: Router,l3switch,ap,Firewall,Celphone
+            win10.
+
+Install-windowsFeature -name dhcp -includemanagementTools
+ 
+task7.1: basic IPv6 dhcp server = "new Scope Pool"
+
+TASK8: ADD A LINUX CLIENT IN HYPER-V.
+how to install linux in hyper-v: via .iso or .vhdx
+
+root
+C1sc0123
+
+systemctl restart network.service
+
+TASK9: WIN2022sERVER as a Proxy/NAT/Internet Server.
+use your windows are your internet provider
+- 2 lan card: WAN and InternalVS
+
+step1. ipv4- General
+         NewRoutingProtocol->NetworkAddressTranslation
+step2. Nat-> new interface: WAN:public interface
+                            InternalVS: private
+
+dns: 1.1.1.1 8.8.8.8 = Good:FastestDNS, PornallSites.
+
+DNS Server: 208.67.222.123
+Alternate DNS Server: 208.67.220.123
+
+tASK10: Routing and WebSurfing Dont Mix:
+
+TASK11: SAN: STORAGE AREA NETWORKS, uses blockIO
+storage where WholeDisk are sent via Network.
+
+why iscsi or Vsan:
+m.2 nvme ssd = 4000mb/s VS 10,000mb iScsi
+
+
+
+
+
+
+

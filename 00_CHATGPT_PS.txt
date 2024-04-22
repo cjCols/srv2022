@@ -1,0 +1,107 @@
+#1.create many OU:
+
+Import-Module ActiveDirectory
+
+# Define the parent OU where the new OUs will be created
+$parentOU = "OU=Contoso,DC=com"
+
+# Prompt the user for the names of the new OUs to be created
+$ouNames = Read-Host "Enter the names of the new OUs, separated by commas (e.g. Sales,Marketing,Support)"
+
+# Split the input string into an array of OU names
+$ouNames = $ouNames -split ","
+
+# Create the new OUs in the parent OU
+foreach ($ouName in $ouNames) {
+    New-ADOrganizationalUnit -Name $ouName -Path $parentOU
+}
+
+#many folders:
+# Prompt the user for the path where the new folders will be created
+$path = Read-Host "Enter the path where the new folders will be created (e.g. C:\Users\John\Documents)"
+
+# Prompt the user for the names of the new folders to be created
+$folderNames = Read-Host "Enter the names of the new folders, separated by commas (e.g. Sales,Marketing,Support)"
+
+# Split the input string into an array of folder names
+$folderNames = $folderNames -split ","
+
+# Create the new folders in the specified path
+foreach ($folderName in $folderNames) {
+    New-Item -Path "$path\$folderName" -ItemType Directory
+}
+
+
+
+##### ou and users ####
+
+Install-Module -Name ActiveDirectory
+
+# Prompt for user input for the username and OU path
+$username = Read-Host -Prompt "Enter the username for the new user"
+$ouPath = Read-Host -Prompt "Enter the OU path for the user"
+
+# Create the new user account and set the password
+$user = New-ADUser -Name $username -Path $ouPath -AccountPassword (Read-Host -Prompt "Enter the password for the user" -AsSecureString) -Enabled $true
+
+# Add the user to the specified OU
+Move-ADObject -Identity $user -TargetPath $ouPath
+
+####m20 dummy accout #############
+
+# Import the Active Directory module
+Import-Module -Name ActiveDirectory
+
+# Create an array of OU paths
+$ouPaths = @(
+    "OU=OU1,DC=example,DC=com",
+    "OU=OU2,DC=example,DC=com",
+    "OU=OU3,DC=example,DC=com",
+    "OU=OU4,DC=example,DC=com",
+    "OU=OU5,DC=example,DC=com",
+    "OU=OU6,DC=example,DC=com",
+    "OU=OU7,DC=example,DC=com",
+    "OU=OU8,DC=example,DC=com",
+    "OU=OU9,DC=example,DC=com",
+    "OU=OU10,DC=example,DC=com"
+)
+
+# Create 20 dummy user accounts
+for ($i = 1; $i -le 20; $i++) {
+    # Generate a random username
+    $username = "user$i"
+
+    # Create the new user account and set the password
+    $user = New-ADUser -Name $username -Path $ouPaths[$i % 10] -AccountPassword (ConvertTo-SecureString "password" -AsPlainText -Force) -Enabled $true
+
+    # Add the user to the specified OU
+    Move-ADObject -Identity $user -TargetPath $ouPaths[$i % 10]
+}
+
+### try to ###########
+
+# Import the Active Directory module
+Import-Module ActiveDirectory
+
+# Define the OUs where the accounts will be created
+$ous = @(
+    "OU=OU1,DC=example,DC=com",
+    "OU=OU2,DC=example,DC=com",
+    "OU=OU3,DC=example,DC=com",
+    "OU=OU4,DC=example,DC=com",
+    "OU=OU5,DC=example,DC=com",
+    "OU=OU6,DC=example,DC=com",
+    "OU=OU7,DC=example,DC=com",
+    "OU=OU8,DC=example,DC=com",
+    "OU=OU9,DC=example,DC=com",
+    "OU=OU10,DC=example,DC=com"
+)
+
+# Loop through the OUs and create the dummy accounts
+foreach ($ou in $ous) {
+    for ($i = 1; $i -le 20; $i++) {
+        $username = "dummy$i"
+        New-ADUser -Name $username -SamAccountName $username -UserPrincipalName "$username@example.com" -Path $ou -AccountPassword (ConvertTo-SecureString "P@ssw0rd" -AsPlainText -Force) -Enabled $true
+    }
+}
+

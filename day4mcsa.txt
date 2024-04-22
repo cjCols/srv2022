@@ -1,0 +1,142 @@
+task1: review:
+DC: 1. new OU = QA-TEST
+     user: qag and qab
+     globalgroup: ggQATEST
+
+APS: 2. apps:
+   new folder = QA-TEST
+       give permissions to LGqatest
+
+DC: 3. GPO for lockDownQA:
+no control panel, network, no shutdown!
+no registry editor, diskmgmt, ncpa.cpl, eventvwr.msc
+
+w7: testing
+
+TASK2: Exploring full features of Active Directory
+RADIUS: remote access dial-in user service
+aka: network authentication server.
+
+cmd
+powershell
+cd\
+Install-windowsFeature telnet-client
+exit
+
+Network Policy and Access Server = RADIUS
+STEP1: 	Install NAPS.
+Step2:  tools -> NPS
+Step3: invertory of NetworkEquipment:
+create a DNS host entry of all Major Network Equipment:
+cm.mcsaM.com = 192.168.137.m1
+ap.mcsaM.com = 192.168.137.m2
+rt.mcsaM.com = 192.168.137.m3
+sw.mcsaM.com = 192.168.137.m4
+
+step4: RadiusClient
+         new radius client
+         cisco call manager 
+         cm.mcsaM.com
+         sharedsecret = secretpass
+
+	 cisco wireless controller
+         ap.mcsaM.com
+         sharedsecret = secretpass
+
+step5: create your RadiusPolicy:
+New Policy: RadiusBYME
+ next: specifyCondition: Windows Groups: domain admins
+    Grant Access
+     Encyrption: PAP/SPAP -> NO!!!
+      Contraints: Next
+       RadiusAttributes:
+        Standard: service-type : others:login
+        VendorSpecific: Cisco AV-pair
+            add: shell:priv-lvl=15
+        Encryption: No Encryption only!
+      Next
+       Finish
+
+TASK3: Windows 2022 Server Groups
+GlobalGroup:
+admistrator:DomainAdmins:Administrators
+
+sag,sab,teg:DomainUsers:Users
+
+NewGroupGroup: ggRADIUS: teg/teb
+
+LocalGroup:
+
+TASK4: WIN22 SERVER REAL WORLD DHCP:
+NewScope: 192.168.137.m5-m9
+Options:
+1 IPaDD
+2 Subnet
+3 defRouter
+4 dns1:
+5 domain-name:
+6 tftpServer
+7
+
+Advance WinDHCP config: Set Predefined Options
+
+TASK5: WINDOWS SERVER 2022 AS A Remote Access VPN
+Server.
+
+Create a Separate VPN server [notDC]
+
+TASK6: INSTALLING WINDOWS ROOT CERTIFICATE AUTH: CA
+step1: on DC, 
+
+IIS self signed Certs.
+
+TASK7: windows GPO folder Redirection:
+step1: Control the StorageUsage on DC with Quota.
+
+
+pc:\My Docs  ---- > Domain:\
+
+TASK8: How to survice a world with no mouse/gui
+1. give it password: C1sc0123
+
+TASK9: hOW TO POWERSHELL to Any windowsServer:
+
+Score1: will make your LIFE EASY!!!!
+
+Configure-SMremoting -enable
+Enable-PSremoting -force
+set-item  wsman:\localhost\Client\TrustedHosts  -value *   
+Y
+Set-Service WinRM -StartMode Automatic
+
+Onyour PC/Server:
+$ip1 = "172.16.50.12"
+$cred1 = Get-Credential
+$con1 = New-PSSession -ComputerName $ip1 -Credential $cred1
+Get-PSSession
+Enter-Pssession  -id  1
+
+On your Score:
+Configure-SMremoting -enable
+Enable-PSremoting -force
+set-item  wsman:\localhost\Client\TrustedHosts  -value *
+
+FINALtASK: how to be a WorldClass Windows Server Admin.
+1. 3 Day rule: never be 3 days withOUT practice
+2. Build aSuper LAB: i5/i7 with 16gb or More, ssd 
+3. pASS AZURE 900 for free:
+How can I get my AZ 900 exam for free?
+How to get a free voucher AZ-900 ?
+Step 1 — Go and visit Microsoft Training.
+Step 2 — Register for Microsoft Azure Virtual Training Day: Fundamentals.
+Step 3 — Join training sessions on preferred 2 days, each day 2 to 2.5 hour.
+
+
+
+
+
+
+
+
+
+

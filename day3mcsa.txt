@@ -1,0 +1,164 @@
+Task1: 
+1. turn on windows 10 and give it internet.using NAT
+clue:
+physical:
+route print
+ping 8.8.8.8
+ping www.nba.com
+
+Tools-> routing and remote access -> general -> new routingProtocol
+       NAT-> new Interface: WAN + internal VS.
+
+2. Pure all Windows Virtualized Enviroment: vsphere vs HyperV(FREE)
+1. kill NAT:
+2. using Powershell, IPv4 static route, Ping win10! 172.16.m.101
+
+TASK2: wINDOWS sERVER KILLED ALL uNIX, some linux.
+
+Windows Active Directory killed all competition: Entries.
+Install Actice directory the Right Way
+Requirements: VirginServer
+1. Only 1 IP address: AD->
+   disable WAN, uncheck: iv6
+2. DNS must be removed-> AD integrated DNS
+3. Active Directory: 
+   stage1: install Active Directory Role ADDS
+   stage2: promote to domain controller: 
+   c1: existing dc
+   c2: add to existing
+   c3: add a New Forest:
+
+TASK3: Active Directory Firsts Thing First.
+What will you do in the first hour of AD?
+1. create a AD form: / inventory of Everything.
+
+ADUC: 
+
+TASK4: WINDOWS GROUPS
+add users to GlobalGroup, add GlobalGroup to LocalGroup
+give permissions to LocalGroup.
+
+TASK5: Adding MemberServers to Domain:
+
+administrator is a member of Globalgroup: DomainAdmins
+
+domain admins is a member of LocalGroup: Administrators
+
+Administrators:domainAdmins:Administrator
+
+TASK6: Adding Workstations:w11,w10,w7 to domain.
+
+w7 = 172.16.m.201/24   gw/dns = 172.16.m.10  teg
+w7n = 172.16.m.202/24  gw/dns = 172.16.m.10  deg
+	
+TASK7: WHY ACTIVE DIRECTORY IS THE ONLY1, NUMBER1.=MONOPOLY
+BEST IMPLEMENTATIO OF GROUP POLICY: GPO.
+
+bestpractice1: examine existing domain policy:
+Tools -> Group Policy:
+backup your DomainController before editing DomainPolicy.
+Add/Roles
+edit : default domain policy: "expect,what you inspect!"
+password policy
+
+Audit policy
+computer configuration
+ policies
+  WindowsSettings
+   SecuritySetting:
+
+AccountPolicyNOTBestPractice:
+
+PasswordPolicy:
+remember: 5
+complexity: Enabled
+length: 8
+
+AccountPolicy:
+lockout = 1
+threshold = 2
+rest = 1
+
+AuditPolicy: iwas bday/ninong!
+auditAccounLogin = failure
+auditObjectAccess = success/failure
+auditlogonEvents = failure
+
+cmd
+gpupdate/force
+
+warning: You allowed Auditing
+         Audit each Resource
+
+
+TASK8: UNLEASH THE FULL POWER/FEATURE OF W22 GPO.
+GPO CAN CONTROL all aspects of your Windows Network
+
+1. lockdownPC: Deny controlPanel,cmd,run.etc..
+
+2. softwareAutoInstall: use gpo to automatcally install
+           apps When they login
+
+3. control what users can see/do.
+
+Task8.1: GPO AS SOFTWARE DEPLOYMENTS:
+
+SALESOU = firefox
+
+FINC = thunderbird
+
+DEVOU = notepad++
+
+step1: put all software in a networkShare:
+\\dcM\gpoapps$
+
+step2: go to groupPolicyManament, rightclick the OU
+  new GroupPolicy.
+User Configuration
+ Policies
+  software Settings
+   software Installation: newPackage
+
+TASK9: Computer/User Lockdown:
+how to destroy pc accidentally:
+run:  :install illegal USB.
+cmd:
+registry:
+editDNS: installPiratedSoftware
+
+LOCKDOWNFIN
+- no cmd, no regedit, no controlPanel, 
+  no Ncpa.cpl, -no usbAccess.
+userConfig
+ Policies
+  adminTemplates
+   System
+    RemovableStorageAccess: deny all access
+    prevent access to cmd
+    prevent access to registry
+    dont run windows apps: devmgmt, diskmgmt, ncpa.cpl
+   
+LOCKDOWNMKTG
+- no cmd, no regedit, no controlPanel, 
+  no Ncpa.cpl, -no usbAccess.
+userConfig
+ Policies
+  adminTemplates
+   System
+    RemovableStorageAccess: deny all access
+    prevent access to cmd
+    prevent access to registry
+    dont run windows apps: devmgmt, diskmgmt, ncpa.cpl
+
+
+
+
+
+
+
+
+
+
+
+
+

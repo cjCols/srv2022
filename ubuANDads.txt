@@ -1,0 +1,29 @@
+sudo apt-get install realmd sssd sssd-tools libnss-sss libpam-sss adcli krb5-user packagekit
+
+realm discover <YOUR_DOMAIN_NAME>
+
+realm join example.com -U <DOMAIN_ADMIN_USERNAME> --computer-ou="OU=Ubuntu,DC=example,DC=com" --os-name="Ubuntu" --os-version="18.04"
+
+kinit user1@EXAMPLE.COM
+
+smbclient -L //<DOMAIN_CONTROLLER_HOSTNAME> -U <YOUR_USERNAME>
+
+or
+
+sudo apt-get install samba winbind libpam-winbind libnss-winbind
+
+sudo vi /etc/samba/smb.conf
+
+workgroup = DOMAIN_NAME
+security = ads
+realm = DOMAIN_NAME.LOCAL
+password server = DC_SERVER_IP_ADDRESS
+idmap config * : range = 16777216-33554431
+template shell = /bin/bash
+winbind use default domain = true
+winbind offline logon = false
+winbind enum users = yes
+winbind enum groups = yes
+winbind refresh tickets = yes
+
+

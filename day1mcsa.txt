@@ -1,0 +1,187 @@
+rYan: it staff., 
+
+Gode: superVisor. vcenter
+
+Gary: itStaff: 
+
+Earl: technician:
+
+
+
+
+
+
+
+
+
+
+
+
+1.ncpa.cpl
+2.devmgmt.msc
+3.cmd -> powershell
+ rename-computer dc50
+ restart-computer  or stop-computer
+4. Install-WindowsFeature -name dns -IncludeManagementTools
+   Install-WindowsFeature -name web-server -IncludeManagementTools
+5. diskmgmt.msc
+6. route print
+ 0.0.0.0  0.0.0.0   ip  gw
+
+Task1: .Net framework.
+Now: 
+ActiveDirectory-vsphere-dockersContatiners-
+kubernetes-linuxIntegration
+4.8 = WindowsAll
+3.5 = PwedeNon-Windows
+   d:\Sources\SxS
+
+Task2. Rock Solid/windows 2022 DNS server.
+forward lookup zone: ping www.nba.com
+2 host: 
+ns = 172.16.m.10
+and 
+_____
+4 alias: www,pop,smtp,imap
+1 Mx: ns
+
+Reverse lookup zone: ping 203.5.5.67
+- used Heavily for troubleshooting, vsphere server.
+
+Task3: Basic WebApp installation and configuration.
+
+Install-WindowsFeature -name web-server -IncludeManagementTools
+
+temporarily disable the firewall:
+check status: 
+Get-NetFirewallProfile
+
+step1: disable for faster testing:
+
+Set-NetFirewallProfile -profile Domain,Pubic,Private -enabled False
+
+Get-NetFirewallProfile
+
+step2: run your webApp: 
+
+IIS = internet information services = .Net
+NGIX = lararvel, fullstack webdev. = 
+
+New-Website -name "test" -hostheader "www.test.com.ph"
+			 -PhysicalPath "c:\webs\datingbiz"
+OldMethod: Gui
+
+TASK4: 
+OFFICE 365 EMAIL: 90% user/3k-5k x 100
+on-Prem exchange: more maintenance
+open source email server.
+1. disable auto banning.
+2. setting-advance-> UnCheck Autoban
+
+TASK5: POST-LUNCH PRACTICE: 15 MINS MAX.
+
+1. DNS:
+ new primaryzone: 
+ cowd.gov.ph
+ -7entries: 2x h, 4 x ali, 1 mx.
+
+2. IIS: new website
+    www.cowd.gov.ph - c:\webs\cellbiz
+
+3. hmailmail:
+    angel.locsin@cowd.gov.ph send to youremail:
+    Subject: date tayo sa beach! (-:
+
+TASK6: VIRTUALIZATION:
+type1 virtualization: direct access to hardware:
+1. vmware vsphere 8.x: 80%
+2. kvm linux:10%
+3. hyperV2022:10$: faster, more reliable.
+
+type2: HostOS: win10/win11 +type2
+1. vmwareWorksstation
+2. imac: vmwareFusion
+3. virtualbox,proxmox.
+
+step1: HyperV-PostInstallation:
+1. 2 or more partitions/hdd
+
+2. d:\0HYPERV\ ->
+
+step2: Create a VirtualSwitch
+
+TASK7: SERVER HARD DRIVE DISKMANAGEMENT:
+3 METHODS in 
+1. classic: diskmgmt.msc
+OID = Online,initialize,DynamicDisk:
+
+2. New method
+
+3. storagePool method
+
+TASK8: SERVER STORAGE MANAGEMENT/NAS STORAGE/
+NETWORK ATTACHED STORAGE.
+RAID FEATURES: REDUNDANT ARRAY OF INDEPENDENT DISK.
+industry standard: 0, 1, 5 and 10.
+Microsoft: r0=diskstripping, r1=diskMirroring, r5=Raid5
+TYPES OF VOLUMES.
+1. simplevolume: default in win10,11,22
+    normal class volume, 
+2. spannedVolume: "garbageCollector" combine extra storage:
+     2 or more drives.
+   21 -> 1500
+   23 -> 2500
+   25 -> 3500 = 7.5gb F:\
+ Con: notFaultTolerant: FT, lose1,loseAll. for c:\TEMP.
+3. Raid0/DiskStripping. "Wedding bestFriend", LOSE1,LOSE1
+  Fastest Storage Writing/Reading EVER!
+  nvme storage Gen4 = 5000mbps
+  3 x nvme g4 + raid0 = 15,000mbps
+   21 -> 2000
+   23 -> 2000
+   25 -> 2000 = 6gb g:\
+4. RAID1/DISK MIRRORING: "OS lifesaver:"
+   c:\ = c:\ 
+     21 -> 3000
+     23 -> 3000 = 3000: H:\
+5. RAID 5: DISK STRIPPING WITH PARITY: SAFE AND FAST
+   21 -> 2550
+   23 -> 2550
+   25 -> 2550 = 5100GB, 2550? ->PARITY
+6. RAID 10+: MIN 6 DRIVES:
+  10T  10T
+  10T  10T
+  10T  10T = C:\10T->30T
+ CHEAPEST: 30T
+   
+TASK9: 15 MAX:
+- create a new HyperV:  "RS" 50gb, 4096, internalVS
+- 5 drive: 21,23,25,25,31
+- sv, spv, r0,r1 and r5
+
+TASK10: "STORAGE POOLS". willreplace Classic.
+"Fake it, till you make it"
+is new type of Storage where you present an Unlimited amount of
+storage to users.
+step1.: create storage: SP1 -> 27GB.
+step2: create virtualDisk: VDvd1 = 20tb
+step3: create volume: J: 12tb
+
+TASK11: NAS vs SAN: what is the difference.
+NAS: network attached storage: lazada/shopee
+type: networkaccess
+WindowsNAS = SMB2 :servermessageblock = E:\
+LinuxNFS = NFS2 :networkFileSystem = E:\
+
+SAN: Storage area networks: P.O:netapp, Emc
+type: blockIO
+iSCSI protocol = Best,Fast,Cheapest bec IP-based
+FiberChannelProtocol = kickBack
+FCoE Protocol = kickBack
+
+install the FEatures: smb,nfs,iscsi
+
+
+
+
+
